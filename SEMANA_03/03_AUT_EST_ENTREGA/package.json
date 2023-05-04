@@ -1,0 +1,14 @@
+{
+  "name": "03_aut_est_entrega",
+  "version": "1.0.0",
+  "description": "Este exercício tem a finalidade de entender como é o seu grau de abstração, deixando de lado a parte visual, e tendo como foco a camada de persistência usando banco de dados, em nosso caso o Sqlite.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

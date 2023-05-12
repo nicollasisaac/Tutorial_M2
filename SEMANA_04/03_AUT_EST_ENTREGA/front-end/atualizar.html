@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="style.css">
+    <title>CRUD</title>
+</head>
+
+<form name="form1" method="post" action="/atualizaUsuario">
+    <h1>Dados Principais</h1>
+    NOME: <input type="text" id="nome" name="nome" value="" required>
+    <br>
+    Cargo: <input type="text" id="cargo" name="cargo" value="" required>
+    <br>
+    Endereço: <input type="text" id="endereco" name="endereco" value="" required>
+    <br>
+    EMAIL: <input type="email" id="email" name="email" value="" required>
+    <br>
+    TELEFONE: <input type="text" id="telefone" name="numero" value="" placeholder="11-123456789" required>
+    <br>
+    Descrição: <input type="text" id="descricao" name="descricao" value="" required>
+    <br>
+    <input type="hidden" id="userId" name="userId" value="">
+    <h1>Experiências</h1>
+    Nome empresa <input type="text" id="nome_empresa" name="nome_empresa" value="" required>
+    <br>
+    Ano que começou a trabalhar na empresa <input type="date" id="ano_inicio_empresa" name="ano_inicio_empresa" value="" required>
+    <br>
+    Ano de saída da empresa <input type="date"  id="ano_fim_empresa" name="ano_fim_empresa" value="" required>
+    <br>
+    Descrição dessa experiência <input type="text" id="descricao_experiencia_empresa" name="descricao_experiencia_empresa" value="" required>
+    <br>
+    <input type="submit" value="ATUALIZAR">
+</form>
+
+<script>
+    let urlAtualizaUsuario = new URL(window.location.href);
+    let params = urlAtualizaUsuario.searchParams;
+    urlAtualizaUsuario = '/atualizaUsuario?userId=' + urlAtualizaUsuario.searchParams.get("userId");
+
+    fetch(urlAtualizaUsuario)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            let pessoa = data;
+
+            pessoa.map(function (pessoa) {
+                document.getElementById('userId').value = pessoa.id_pessoa;
+                document.getElementById('nome').value = pessoa.nome_pessoa;
+                document.getElementById('cargo').value = pessoa.cargo_pessoa;
+                document.getElementById('endereco').value = pessoa.endereco_pessoa;
+                document.getElementById('email').value = pessoa.email_pessoa;
+                document.getElementById('telefone').value = pessoa.numero_telefone;
+                document.getElementById('descricao').value = pessoa.descricao_sobre_mim;
+            });
+            alert(response.json());
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+    fetch(urlAtualizaUsuario)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            let experiencia = data;
+
+            experiencia.map(function (experiencia) {
+                document.getElementById('userId').value = experiencia.id_pessoa;
+                document.getElementById('nome_empresa').value = experiencia.nome_empresa;
+                document.getElementById('ano_inicio_empresa').value = experiencia.ano_inicio_empresa;
+                document.getElementById('ano_fim_empresa').value = experiencia.ano_fim_empresa;
+                document.getElementById('descricao_experiencia_empresa').value = experiencia.descricao_experiencia_empresa;
+
+            });
+            alert(response.json());
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+</script>
+</body>
+
+</html>

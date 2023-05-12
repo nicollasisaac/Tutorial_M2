@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="style.css">
+    <title>CRUD</title>
+</head>
+<h1>Curriculo</h1>
+<p><a href="/inserir.html">Inserir novo curriculo</a></p>
+
+<script>
+    const url = '/pessoa';
+
+    fetch(url)
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        let pessoa = data;
+
+        let saida = '';
+        pessoa.map(function(pessoa) {saida += '<ul class="lista_curriculo">' + 
+         '<list> '+ `${pessoa.id_pessoa}` + '</list>' + 
+         '<list> '+ `${pessoa.nome_pessoa}` + '</list>' +  
+         '<list> ' + `${pessoa.cargo_pessoa}` + '</list>' + 
+         '<list> ' +  `${pessoa.endereco_pessoa}` + '</list>' +  
+         '<list> ' + `${pessoa.cargo_pessoa}` + '</list>' + 
+         '<list> ' +  `${pessoa.numero_telefone}` +  '</list>' + 
+         '<list> ' + `${pessoa.nome_habilidade}` + '</list>' + 
+         '<list> ' + `${pessoa.nivel_habilidade}` + '</list>' + 
+         '<list> ' + `${pessoa.nome_tipo_personalidade}` + '</list>' + 
+         '<list> ' + `${pessoa.nivel_tipo_personalidade}` + '</list>' + 
+         '</ul>';
+
+        saida += '<a href="/atualizar.html?userId=' + `${pessoa.id_pessoa}` + '">EDITAR </a>';
+        saida += '<a href="/removeUsuario?userId=' + `${pessoa.id_pessoa}` + '"> REMOVER</a></br>'+ '</ul>';
+        });
+        document.getElementById('resultado').innerHTML = saida;
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+    
+</script>
+
+<body>
+    <div id="resultado"></div>
+</body>
+</html>
